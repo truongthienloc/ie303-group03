@@ -7,7 +7,7 @@ public class ToeicSW extends ChungChiNgoaiNgu {
     private int soNamHetHan;
     static private final int DIEM_TOT_NGHIEP = 205;
 
-    ToeicSW(String maChungChi, int namCap, int diem, int soNamHetHan) {
+    public ToeicSW(String maChungChi, int namCap, int diem, int soNamHetHan) {
         super(maChungChi,namCap);
         this.diem = diem;
         this.soNamHetHan = soNamHetHan;

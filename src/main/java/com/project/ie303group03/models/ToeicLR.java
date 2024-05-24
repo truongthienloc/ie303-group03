@@ -6,7 +6,7 @@ public class ToeicLR extends ChungChiNgoaiNgu{
     private int soNamHetHan;
     static private final int DIEM_TOT_NGHIEP = 450;
 
-    ToeicLR(String maChungChi, int namCap, int diem, int soNamHetHan) {
+    public ToeicLR(String maChungChi, int namCap, int diem, int soNamHetHan) {
         super(maChungChi,namCap);
         this.diem = diem;
         this.soNamHetHan = soNamHetHan;

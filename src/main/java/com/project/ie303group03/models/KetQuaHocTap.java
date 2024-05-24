@@ -4,7 +4,7 @@ public class KetQuaHocTap {
     private MonHoc monHoc;
     private float diemTongKet;
 
-    KetQuaHocTap(MonHoc monHoc, float diemTongKet) {
+    public KetQuaHocTap(MonHoc monHoc, float diemTongKet) {
         this.monHoc = monHoc;
         this.diemTongKet = diemTongKet;
     }

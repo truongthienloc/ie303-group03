@@ -2,6 +2,7 @@ module com.project.ie303group03 {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires java.naming;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;

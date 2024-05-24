@@ -1,6 +1,6 @@
 package com.project.ie303group03.models;
 
-abstract class ChungChiNgoaiNgu {
+public abstract class ChungChiNgoaiNgu {
     String maChungChi;
     int namCap;
 
