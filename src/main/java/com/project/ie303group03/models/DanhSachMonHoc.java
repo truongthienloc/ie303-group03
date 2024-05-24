@@ -8,9 +8,22 @@ public class DanhSachMonHoc {
    private ArrayList<MonHoc> dsMonHoc = new ArrayList<>();
 
     public DanhSachMonHoc() throws SQLException {
-//        String sql = "SELECT * FROM MONHOC mh, KHOA k, LOAIMONHOC lmh WHERE mh....";
-//        ResultSet results = SQLServer.getServerInstance().query(sql);
-        System.out.println("Load mon hoc");
+        String sql = "SELECT mh.MAMH, mh.TENMH, lm.MALOAI, lm.TENLOAI, kh.MAKHOA, kh.TENKHOA, mh.SOTC FROM MONHOC mh, LOAIMH lm, KHOA kh WHERE mh.MALOAI = lm.MALOAI AND mh.MAKHOA = kh.MAKHOA";
+        ResultSet results = SQLServer.getServerInstance().select(sql);
+        while(results.next()) {
+            String maMH = results.getString("MAMH");
+            String tenMH = results.getString("TENMH");
+            String maLoai = results.getString("MALOAI");
+            String tenLoai = results.getString("TENLOAI");
+            String maKhoa = results.getString("MAKHOA");
+            String tenKhoa = results.getString("TENKHOA");
+            int soTinChi = Integer.valueOf(results.getString("SOTC"));
+            Khoa khoa = new Khoa(maKhoa,tenKhoa);
+            LoaiMonHoc loaiMon = new LoaiMonHoc(maLoai,tenLoai);
+            MonHoc mh = new MonHoc(maMH,tenMH,soTinChi,khoa,loaiMon);
+            this.dsMonHoc.add(mh);
+        }
+        SQLServer.getServerInstance().closeConnection();
     }
 
     public MonHoc getMonHocById(String id) {

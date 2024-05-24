@@ -1,15 +1,13 @@
 package com.project.ie303group03.models;
 
-import java.util.HashMap;
-
 public class MonHoc {
     private String maMH;
     private String tenMH;
     private int soTinChi;
-    private HashMap<String, String> khoa;
-    private  HashMap<String, String> loaiMH;
+    private Khoa khoa;
+    private LoaiMonHoc loaiMH;
 
-    public MonHoc(String maMH, String tenMH, int soTinChi, HashMap<String, String> khoa, HashMap<String, String> loaiMH) {
+    public MonHoc(String maMH, String tenMH, int soTinChi, Khoa khoa, LoaiMonHoc loaiMH) {
         this.maMH = maMH;
         this.tenMH = tenMH;
         this.soTinChi = soTinChi;
@@ -29,11 +27,11 @@ public class MonHoc {
         return this.soTinChi;
     }
 
-    public HashMap<String, String> getKhoa() {
-        return  this.khoa;
+    public Khoa getKhoa() {
+        return this.khoa;
     }
 
-    public HashMap<String,String> getLoaiMH() {
+    public LoaiMonHoc getLoaiMH() {
         return this.loaiMH;
     }
 }
