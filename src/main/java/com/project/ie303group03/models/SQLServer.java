@@ -1,35 +1,29 @@
 package com.project.ie303group03.models;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.CallableStatement;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 // apply singleton pattern
 public class SQLServer {
-    private String username;
-    private String password;
-    private String serverName;
-    private String databaseName;
-    private int port;
+    private final String USERNAME = "sa";
+    private final String PASSWORD = "sa";
+    private final String SERVER_NAME = "DESKTOP-M15KQ9A\\SQLEXPRESS";
+    private final String DATABASE_NAME = "XET_TOT_NGHIEP";
+    private final int PORT = 1433;
     private Connection con;
     static private SQLServer server;
 
-    private SQLServer(String username, String password, String serverName, int port, String databaseName) {
-        this.username = username;
-        this.password = password;
-        this.port = port;
-        this.serverName = serverName;
-        this.databaseName = databaseName;
-
+    private SQLServer() {
         SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setUser(this.username);
-        ds.setPassword(this.password);
-        ds.setServerName(this.serverName);
-        ds.setPortNumber(this.port);
-        ds.setDatabaseName(this.databaseName);
-        ds.setDatabaseName(this.databaseName);
+        ds.setUser(this.USERNAME);
+        ds.setPassword(this.PASSWORD);
+        ds.setServerName(this.SERVER_NAME);
+        ds.setPortNumber(this.PORT);
+        ds.setDatabaseName(this.DATABASE_NAME);
         ds.setTrustServerCertificate(true);
 
         try {
@@ -45,11 +39,11 @@ public class SQLServer {
         if (server == null) {
             synchronized (SQLServer.class) {
                 if (server == null) {
-                    server = new SQLServer("sa", "sa", "DESKTOP-M15KQ9A\\SQLEXPRESS", 1433, "XET_TOT_NGHIEP");
+                    server = new SQLServer();
                 }
             }
         } else if (server.getConnection().isClosed()) {
-            server = new SQLServer("sa", "sa", "DESKTOP-M15KQ9A\\SQLEXPRESS", 1433, "XET_TOT_NGHIEP");
+            server = new SQLServer();
         }
 
         return server;
@@ -69,7 +63,8 @@ public class SQLServer {
         }
     }
 
-//    public ResultSet query(String sql) {
-//
-//    }
+    public ResultSet select(String sql) throws SQLException {
+        CallableStatement cstmt = con.prepareCall(sql);
+        return cstmt.executeQuery();
+    }
 }

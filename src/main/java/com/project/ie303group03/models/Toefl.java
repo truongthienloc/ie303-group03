@@ -7,7 +7,7 @@ public class Toefl extends ChungChiNgoaiNgu {
     private int soNamHetHan;
     static private final int DIEM_TOT_NGHIEP = 45;
 
-    Toefl(String maChungChi, int namCap, int diem, int soNamHetHan) {
+    public Toefl(String maChungChi, int namCap, int diem, int soNamHetHan) {
         super(maChungChi, namCap);
         this.diem = diem;
         this.soNamHetHan = soNamHetHan;

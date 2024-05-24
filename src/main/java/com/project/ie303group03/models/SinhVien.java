@@ -9,7 +9,7 @@ public class SinhVien {
     private ArrayList<KetQuaHocTap> bangDiem;
     private int diemRenLuyen;
 
-    SinhVien(String maSV, String hoTen, ArrayList<ChungChiNgoaiNgu> dsChungChiNgoaiNgu, ArrayList<KetQuaHocTap> bangDiem, int diemRenLuyen) {
+    public SinhVien(String maSV, String hoTen, ArrayList<ChungChiNgoaiNgu> dsChungChiNgoaiNgu, ArrayList<KetQuaHocTap> bangDiem, int diemRenLuyen) {
         this.maSV = maSV;
         this.hoTen = hoTen;
         this.bangDiem = bangDiem;

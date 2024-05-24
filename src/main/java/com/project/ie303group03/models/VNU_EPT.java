@@ -6,7 +6,7 @@ public class VNU_EPT extends ChungChiNgoaiNgu{
     private int soNamHetHan;
     static private final int DIEM_TOT_NGHIEP = 176;
 
-    VNU_EPT(String maChungChi, int namCap, int diem, int soNamHetHan) {
+    public VNU_EPT(String maChungChi, int namCap, int diem, int soNamHetHan) {
         super(maChungChi,namCap);
         this.diem = diem;
         this.soNamHetHan = soNamHetHan;
