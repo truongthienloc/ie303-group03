@@ -8,6 +8,8 @@ module com.project.ie303group03 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
+    requires com.microsoft.sqlserver.jdbc;
 
     opens com.project.ie303group03 to javafx.fxml;
     exports com.project.ie303group03;
