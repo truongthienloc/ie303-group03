@@ -8,4 +8,12 @@ public class KetQuaHocTap {
         this.monHoc = monHoc;
         this.diemTongKet = diemTongKet;
     }
+
+    public MonHoc getMonHoc() {
+        return monHoc;
+    }
+
+    public float getDiemTongKet() {
+        return diemTongKet;
+    }
 }
