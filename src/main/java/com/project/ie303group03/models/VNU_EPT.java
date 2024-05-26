@@ -4,12 +4,20 @@ import  java.time.LocalDate;
 public class VNU_EPT extends ChungChiNgoaiNgu{
     private int diem;
     private int soNamHetHan;
-    static private final int DIEM_TOT_NGHIEP = 176;
+    static public final int DIEM_TOT_NGHIEP = 176;
 
     public VNU_EPT(String maChungChi, int namCap, int diem, int soNamHetHan) {
         super(maChungChi,namCap);
         this.diem = diem;
         this.soNamHetHan = soNamHetHan;
+    }
+
+    public int getDiem() {
+        return this.diem;
+    }
+
+    public int getSoNamHetHan() {
+        return this.soNamHetHan;
     }
 
     @Override
