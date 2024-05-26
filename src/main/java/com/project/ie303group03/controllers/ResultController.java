@@ -9,6 +9,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ResultController {
+    private SinhVienController sinhVienController = null;
+
+    public void setSinhVienController(SinhVienController sinhVienController) {
+        this.sinhVienController = sinhVienController;
+    }
 
     public void handleBackClick(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
@@ -16,6 +21,9 @@ public class ResultController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/project/ie303group03/fxml/main-view.fxml"));
         Scene scene = new Scene(loader.load());
+
+        MainController mainController = loader.getController();
+        mainController.setSinhVienController(this.sinhVienController);
 
         stage.setScene(scene);
     }

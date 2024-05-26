@@ -15,5 +15,6 @@ module com.project.ie303group03 {
     opens com.project.ie303group03 to javafx.fxml;
     exports com.project.ie303group03;
     exports com.project.ie303group03.controllers;
+    exports com.project.ie303group03.models;
     opens com.project.ie303group03.controllers to javafx.fxml;
 }

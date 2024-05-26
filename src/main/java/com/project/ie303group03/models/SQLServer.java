@@ -6,14 +6,15 @@ import java.sql.SQLException;
 import java.sql.CallableStatement;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.project.ie303group03.configs.DatabaseConfig;
 
 // apply singleton pattern
 public class SQLServer {
-    private final String USERNAME = "sa";
-    private final String PASSWORD = "sa";
-    private final String SERVER_NAME = "DINH-KHANH";
-    private final String DATABASE_NAME = "XET_TOT_NGHIEP";
-    private final int PORT = 1433;
+    private final String USERNAME = DatabaseConfig.USERNAME;
+    private final String PASSWORD = DatabaseConfig.PASSWORD;
+    private final String SERVER_NAME = DatabaseConfig.SERVER_NAME;
+    private final String DATABASE_NAME = DatabaseConfig.DATABASE_NAME;
+    private final int PORT = DatabaseConfig.PORT;
     private Connection con;
     static private SQLServer server;
 

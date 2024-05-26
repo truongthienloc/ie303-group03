@@ -10,6 +10,9 @@ public class SinhVienController {
     private SinhVien sinhVien;
     private String[] logs;
 
+    public SinhVien getSinhVien() {
+        return sinhVien;
+    }
 
     public void initData() {
         // tao ds mon hoc

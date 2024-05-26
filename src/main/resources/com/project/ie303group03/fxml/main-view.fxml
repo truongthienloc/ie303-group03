@@ -38,12 +38,12 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="399.0" prefWidth="646.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="301.0" prefWidth="523.0" style="-fx-padding: 0px 0px 10px 0px; -fx-border-insets: 0px 0px 10px 0px; -fx-background-insets: 0px 0px 10px 0px;">
+            <TableView fx:id="tableMonHoc" prefHeight="301.0" prefWidth="523.0" style="-fx-padding: 0px 0px 10px 0px; -fx-border-insets: 0px 0px 10px 0px; -fx-background-insets: 0px 0px 10px 0px;">
               <columns>
-                <TableColumn prefWidth="94.4000244140625" text="Mã môn học" />
-                <TableColumn prefWidth="259.20001220703125" text="Tên môn học" />
-                  <TableColumn minWidth="0.0" prefWidth="95.20001220703125" text="Số điểm" />
-                  <TableColumn minWidth="0.0" prefWidth="75.9998779296875" text="Số tín chỉ" />
+                <TableColumn fx:id="colMaMonHoc" maxWidth="150.0" minWidth="90.0" prefWidth="94.4000244140625" resizable="false" text="Mã môn học" />
+                <TableColumn fx:id="colTenMonHoc" prefWidth="259.20001220703125" text="Tên môn học" />
+                  <TableColumn fx:id="colDiem" maxWidth="115.0" minWidth="95.0" prefWidth="95.20001220703125" resizable="false" text="Số điểm" />
+                  <TableColumn fx:id="colSoTinChi" maxWidth="80.0" minWidth="80.0" resizable="false" text="Số tín chỉ" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
