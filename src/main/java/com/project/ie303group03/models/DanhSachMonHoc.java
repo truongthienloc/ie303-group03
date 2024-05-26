@@ -33,4 +33,12 @@ public class DanhSachMonHoc {
         }
         return null;
     }
+    public ArrayList<MonHoc> getMonHocByType(String type) {
+        ArrayList<MonHoc> results = new ArrayList<>();
+        for (MonHoc mh : this.dsMonHoc) {
+            if (mh.getLoaiMH().getMaLoaiMH().equals(type))
+                results.add(mh);
+        }
+        return results;
+    }
 }

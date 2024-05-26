@@ -8,15 +8,11 @@ import java.util.ArrayList;
 public class SinhVienController {
     private SinhVien sinhVien;
     private String[] logs;
+    private DanhSachMonHoc dsmh = null;
     private ArrayList<DieuKienTotNghiep> dsDieuKienTotNghiep = new ArrayList<>();
 
     public SinhVienController() {
-        // khởi tạo danh sách điều kiện
-        // khởi tạo
-    }
-
-    public void initData() {
-        // tao ds mon hoc
+        // load danh sach mon hoc
         DanhSachMonHoc dsmh = null;
         try {
             dsmh = new DanhSachMonHoc();
@@ -24,6 +20,13 @@ public class SinhVienController {
             throw new RuntimeException(e);
         }
 
+        // khởi tạo danh sách điều kiện
+            //dieu kien monhoc
+        DieuKienDaiCuong dkmh = new DieuKienDaiCuong(this.dsmh);
+        // khởi tạo
+    }
+
+    public void initData() {
         // tạo thông tin cá nhân
         String maSV = "21520984";
         String hoTen = "Tran Dinh Khanh";
@@ -50,7 +53,6 @@ public class SinhVienController {
 
         KetQuaHocTap kq4 = new KetQuaHocTap(dsmh.getMonHocById("SE104"), 9f);
         bangDiem.add(kq4);
-
         KetQuaHocTap kq5 = new KetQuaHocTap(dsmh.getMonHocById("SS010"), 9f);
         bangDiem.add(kq5);
 
@@ -123,6 +125,14 @@ public class SinhVienController {
         KetQuaHocTap kq28 = new KetQuaHocTap(dsmh.getMonHocById("SS006"), 8f);
         bangDiem.add(kq28);
 
+        KetQuaHocTap kq29 = new KetQuaHocTap(dsmh.getMonHocById("ENG01"), -1f);
+        bangDiem.add(kq29);
+
+        KetQuaHocTap kq30 = new KetQuaHocTap(dsmh.getMonHocById("ENG03"), -1f);
+        bangDiem.add(kq30);
+
+
+
         // điểm rèn luyện
         int diemRenLuyen = 100;
 
@@ -133,5 +143,11 @@ public class SinhVienController {
         for(KetQuaHocTap kq: this.sinhVien.getBangDiem()) {
             System.out.println(kq.getMonHoc().getTenMH() + "---" + kq.getDiemTongKet());
         }
+    }
+
+    public void xetTotNghiep() {
+        DieuKienDaiCuong dkdc = new DieuKienDaiCuong(dsmh);
+        dkdc.xetDieuKien(this.sinhVien);
+        System.out.println(dkdc.getLog());
     }
 }

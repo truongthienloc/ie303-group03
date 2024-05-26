@@ -8,6 +8,8 @@ public class MainTest {
     public static void main(String[] args) {
        SinhVienController controller = new SinhVienController();
        controller.initData();
-       controller.print();
+//       controller.print();
+        controller.xetTotNghiep();
+
     }
 }
