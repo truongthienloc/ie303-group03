@@ -1,7 +1,6 @@
 package com.project.ie303group03.controllers;
 
-import com.project.ie303group03.models.KQHTDataModel;
-import com.project.ie303group03.models.KetQuaHocTap;
+import com.project.ie303group03.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,10 +14,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -41,6 +47,10 @@ public class MainController implements Initializable {
     private TableColumn<KQHTDataModel, Float> colDiem;
     @FXML
     private TextField tfDiemRenLuyen;
+    @FXML
+    private TextField tfMSSV;
+    @FXML
+    private TextField tfHoTen;
 
     private SinhVienController sinhVienController = null;
 
@@ -60,7 +70,23 @@ public class MainController implements Initializable {
         this.sinhVienController = sinhVienController;
     }
 
-    public void handleBtnImportFileClick(ActionEvent e) {
+    private void renderTableMonHoc() {
+        ArrayList<KetQuaHocTap> kqhts = this.sinhVienController.getSinhVien().getBangDiem();
+
+        ObservableList<KQHTDataModel> sinhVienList = FXCollections.observableArrayList();
+        for (KetQuaHocTap kqht : kqhts) {
+            sinhVienList.add(KQHTDataModel.fromKetQuaHocTap(kqht));
+        }
+
+        tableMonHoc.setItems(sinhVienList);
+
+        SinhVien sinhVien = this.sinhVienController.getSinhVien();
+        tfMSSV.setText(sinhVien.getMaSV());
+        tfHoTen.setText(sinhVien.getHoTen());
+        tfDiemRenLuyen.setText(String.valueOf(sinhVien.getDiemRenLuyen()));
+    }
+
+    public void handleBtnImportFileClick(ActionEvent e) throws Exception {
         Node node = (Node) e.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
@@ -71,22 +97,55 @@ public class MainController implements Initializable {
         File file = fc.showOpenDialog(stage);
 
         if (file == null) {
+            return;
         }
 
-        // TODO: Handle add data and navigate to result screen
+        // TODO: Handle add data and navigate to result
+        FileInputStream fis = new FileInputStream(file.getPath());
+        try {
+            Workbook wb = WorkbookFactory.create(fis);
+            Sheet sheetThongTin = wb.getSheetAt(0);
+            Sheet sheetBangDiem = wb.getSheetAt(1);
+//        Sheet sheetChungChi = wb.getSheetAt(2);
+
+            String mssv = sheetThongTin.getRow(0).getCell(0).getStringCellValue();
+            String hoTen = sheetThongTin.getRow(1).getCell(0).getStringCellValue();
+            int diemRenLuyen = (int)sheetThongTin.getRow(2).getCell(0).getNumericCellValue();
+
+
+            DanhSachMonHoc dsmh = new DanhSachMonHoc();
+            ArrayList<KetQuaHocTap> kqhts = new ArrayList<>();
+
+            int startRow = sheetBangDiem.getFirstRowNum();
+            int endRow = sheetBangDiem.getLastRowNum();
+            for (int i = startRow; i <= endRow; i++) {
+                Row curRow = sheetBangDiem.getRow(i);
+                String maMonHoc = curRow.getCell(0).getStringCellValue();
+                float soDiem = (float)(curRow.getCell(1).getNumericCellValue());
+
+                MonHoc monHoc = dsmh.getMonHocById(maMonHoc);
+                if (monHoc == null) {
+                    continue;
+                }
+                KetQuaHocTap kqht = new KetQuaHocTap(monHoc, soDiem);
+                kqhts.add(kqht);
+            }
+
+            SinhVien sinhVien = new SinhVien(mssv, hoTen, new ArrayList<>(), kqhts, diemRenLuyen);
+            this.sinhVienController.setSinhVien(sinhVien);
+            this.renderTableMonHoc();
+        } catch (Exception exception) {
+            fis.close();
+            throw new Exception(exception);
+        }
+
+        fis.close();
     }
 
     public void handleBtnLoadDataClick(ActionEvent e) {
         // TODO: Handle init testing case data
         this.sinhVienController.initData();
-        ArrayList<KetQuaHocTap> kqhts = this.sinhVienController.getSinhVien().getBangDiem();
-
-        ObservableList<KQHTDataModel> sinhVienList = FXCollections.observableArrayList();
-        for (KetQuaHocTap kqht : kqhts) {
-            sinhVienList.add(KQHTDataModel.fromKetQuaHocTap(kqht));
-        }
-
-        tableMonHoc.setItems(sinhVienList);
+        this.renderTableMonHoc();
     }
 
     public void handleBtnCheckClick(ActionEvent e) throws IOException {

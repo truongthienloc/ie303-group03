@@ -32,8 +32,8 @@ build/
 !**/src/test/**/build/
 
 # ENV #
-!**/src/main/**/configs/
-!src/main/java/com/project/ie303group03/configs/
+#!**/src/main/**/configs/
+#!src/main/java/com/project/ie303group03/configs/
 src/main/java/com/project/ie303group03/configs/DatabaseConfig.java
 
 ### VS Code ###

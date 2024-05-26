@@ -11,6 +11,8 @@ module com.project.ie303group03 {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires com.microsoft.sqlserver.jdbc;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
 
     opens com.project.ie303group03 to javafx.fxml;
     exports com.project.ie303group03;
