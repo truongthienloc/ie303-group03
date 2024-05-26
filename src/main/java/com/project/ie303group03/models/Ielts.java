@@ -13,7 +13,7 @@ public class Ielts extends ChungChiNgoaiNgu{
         this.soNamHetHan = soNamHetHan;
     }
 
-    public boolean xetChungChi() {
+    public MaXetChungChi xetChungChi() {
         int currentYear = Integer.valueOf(LocalDate.now().getYear());
 
         if(currentYear - this.namCap > this.soNamHetHan)

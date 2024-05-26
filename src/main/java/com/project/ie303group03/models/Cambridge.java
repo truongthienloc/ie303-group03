@@ -10,7 +10,7 @@ public class Cambridge extends ChungChiNgoaiNgu{
     }
 
     @Override
-    public boolean xetChungChi() {
+    public MaXetChungChi xetChungChi() {
         if(this.xepLoai.equals(this.LOAI_TOT_NGHIEP))
             return  MaXetChungChi.DAT;
         return MaXetChungChi.KHONG_DU_DIEM;

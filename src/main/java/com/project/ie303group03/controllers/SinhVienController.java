@@ -13,7 +13,6 @@ public class SinhVienController {
 
     public SinhVienController() {
         // load danh sach mon hoc
-        DanhSachMonHoc dsmh = null;
         try {
             dsmh = new DanhSachMonHoc();
         } catch (SQLException e) {
