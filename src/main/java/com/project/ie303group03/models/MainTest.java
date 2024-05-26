@@ -6,10 +6,8 @@ import java.sql.SQLException;
 
 public class MainTest {
     public static void main(String[] args) {
-        try {
-            DanhSachMonHoc dsmh = new DanhSachMonHoc();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+       SinhVienController controller = new SinhVienController();
+       controller.initData();
+       controller.print();
     }
 }
