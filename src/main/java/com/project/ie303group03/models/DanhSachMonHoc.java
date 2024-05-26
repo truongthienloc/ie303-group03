@@ -26,6 +26,10 @@ public class DanhSachMonHoc {
         SQLServer.getServerInstance().closeConnection();
     }
 
+    public ArrayList<MonHoc> getDsMonHoc() {
+        return this.dsMonHoc;
+    }
+
     public MonHoc getMonHocById(String id) {
         for (MonHoc mh : this.dsMonHoc) {
             if (mh.getMaMH().equals(id))
@@ -33,6 +37,7 @@ public class DanhSachMonHoc {
         }
         return null;
     }
+
     public ArrayList<MonHoc> getMonHocByType(String type) {
         ArrayList<MonHoc> results = new ArrayList<>();
         for (MonHoc mh : this.dsMonHoc) {

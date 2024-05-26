@@ -36,4 +36,14 @@ public class SinhVien {
     public ArrayList<KetQuaHocTap> getBangDiem() {
         return this.bangDiem;
     }
+
+    public KetQuaHocTap getKetQuaHocTapFromBangDiem(String id) {
+        for (KetQuaHocTap kq : this.bangDiem) {
+            if (kq.getMonHoc().getMaMH().equals(id)) {
+                return kq;
+            }
+        }
+        return null;
+    }
+
 }
