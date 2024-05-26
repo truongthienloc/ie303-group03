@@ -9,5 +9,5 @@ public abstract class ChungChiNgoaiNgu {
         this.namCap = namCap;
     }
 
-    public abstract  MaXetChungChi xetChungChi();
+    public abstract boolean xetChungChi();
 }

@@ -11,7 +11,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 public class SQLServer {
     private final String USERNAME = "sa";
     private final String PASSWORD = "sa";
-    private final String SERVER_NAME = "DINH-KHANH";
+    private final String SERVER_NAME = "DESKTOP-M15KQ9A\\SQLEXPRESS";
     private final String DATABASE_NAME = "XET_TOT_NGHIEP";
     private final int PORT = 1433;
     private Connection con;

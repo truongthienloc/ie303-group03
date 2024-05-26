@@ -4,12 +4,16 @@ import com.project.ie303group03.models.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SinhVienController {
     private SinhVien sinhVien;
     private String[] logs;
+    private ArrayList<DieuKienTotNghiep> dsDieuKienTotNghiep = new ArrayList<>();
 
+    public SinhVienController() {
+        // khởi tạo danh sách điều kiện
+        // khởi tạo
+    }
 
     public void initData() {
         // tao ds mon hoc
@@ -31,8 +35,6 @@ public class SinhVienController {
         ArrayList<ChungChiNgoaiNgu> dsChungChiNgoaiNgu = new ArrayList<ChungChiNgoaiNgu>();
         dsChungChiNgoaiNgu.add(toeicLR);
         dsChungChiNgoaiNgu.add(toiecSW);
-        //....
-
 
         // tạo môn học
         ArrayList<KetQuaHocTap> bangDiem = new ArrayList<>();
@@ -120,8 +122,6 @@ public class SinhVienController {
 
         KetQuaHocTap kq28 = new KetQuaHocTap(dsmh.getMonHocById("SS006"), 8f);
         bangDiem.add(kq28);
-
-
 
         // điểm rèn luyện
         int diemRenLuyen = 100;

@@ -14,7 +14,7 @@ public class Toefl extends ChungChiNgoaiNgu {
     }
 
     @Override
-    public MaXetChungChi xetChungChi() {
+    public boolean xetChungChi() {
         int currentYear = Integer.valueOf(LocalDate.now().getYear());
 
         if(currentYear - this.namCap > this.soNamHetHan)
