@@ -5,11 +5,12 @@ import com.project.ie303group03.models.*;
 import java.net.ServerSocket;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SinhVienController {
     private SinhVien sinhVien;
     private String[] logs;
+    private ArrayList<DieuKienTotNghiep> dsDieuKienTotNghiep = new ArrayList<>();
+    private DanhSachMonHoc dsmh = null;
 
     public void setSinhVien(SinhVien sinhVien) {
         this.sinhVien = sinhVien;
@@ -19,28 +20,37 @@ public class SinhVienController {
         return sinhVien;
     }
 
-    public void initData() {
-        // tao ds mon hoc
-        DanhSachMonHoc dsmh = null;
+    public SinhVienController() {
         try {
             dsmh = new DanhSachMonHoc();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+        // khởi tạo danh sách điều kiện
+        DieuKienTongTinChi dk1 = new DieuKienTongTinChi();
+        DieuKienAnhVan dk2 = new DieuKienAnhVan();
+
+        dsDieuKienTotNghiep.add(dk1);
+        dsDieuKienTotNghiep.add(dk2);
+        // khởi tạo
+    }
+
+    public void initData() {
+        // tao ds mon hoc
+
+
         // tạo thông tin cá nhân
         String maSV = "21520984";
         String hoTen = "Tran Dinh Khanh";
 
         // Khởi tạo chứng chỉ ngoại ngữ
-        ToeicLR toeicLR = new ToeicLR("toeicLR", 2024 ,800, 2);
-        ToeicSW toiecSW = new ToeicSW("toiecSW", 2024, 320, 2);
+        ToeicLR toeicLR = new ToeicLR("toeicLR", 2024 ,600, 2);
+        ToeicSW toiecSW = new ToeicSW("toiecSW", 2024, 200, 2);
 
         ArrayList<ChungChiNgoaiNgu> dsChungChiNgoaiNgu = new ArrayList<ChungChiNgoaiNgu>();
-        dsChungChiNgoaiNgu.add(toeicLR);
         dsChungChiNgoaiNgu.add(toiecSW);
-        //....
-
+        dsChungChiNgoaiNgu.add(toeicLR);
 
         // tạo môn học
         ArrayList<KetQuaHocTap> bangDiem = new ArrayList<>();
@@ -129,7 +139,11 @@ public class SinhVienController {
         KetQuaHocTap kq28 = new KetQuaHocTap(dsmh.getMonHocById("SS006"), 8f);
         bangDiem.add(kq28);
 
+        KetQuaHocTap kq29 = new KetQuaHocTap(dsmh.getMonHocById("ENG01"), -1f);
+        bangDiem.add(kq29);
 
+        KetQuaHocTap kq30 = new KetQuaHocTap(dsmh.getMonHocById("ENG03"), -1f);
+        bangDiem.add(kq30);
 
         // điểm rèn luyện
         int diemRenLuyen = 100;
@@ -142,4 +156,11 @@ public class SinhVienController {
             System.out.println(kq.getMonHoc().getTenMH() + "---" + kq.getDiemTongKet());
         }
     }
+
+    public void xetTotNghiep() {
+        DieuKienDaiCuong dk = new DieuKienDaiCuong(this.dsmh);
+        System.out.println(dk.xetDieuKien(this.sinhVien));
+        System.out.println(dk.getLog());
+    }
+
 }

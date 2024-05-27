@@ -5,12 +5,20 @@ import java.time.LocalDate;
 public class Ielts extends ChungChiNgoaiNgu{
     private float diem;
     private int soNamHetHan;
-    static private final float DIEM_TOT_NGHIEP = 4.5f;
+    static public final float DIEM_TOT_NGHIEP = 4.5f;
 
     public Ielts(String maChungChi, int namCap, float diem, int soNamHetHan) {
         super(maChungChi, namCap);
         this.diem = diem;
         this.soNamHetHan = soNamHetHan;
+    }
+
+    public float getDiem() {
+        return this.diem;
+    }
+
+    public int getSoNamHetHan() {
+        return this.soNamHetHan;
     }
 
     public MaXetChungChi xetChungChi() {
