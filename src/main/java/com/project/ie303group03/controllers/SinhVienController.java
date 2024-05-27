@@ -64,8 +64,8 @@ public class SinhVienController {
         KetQuaHocTap kq6 = new KetQuaHocTap(dsmh.getMonHocById("IE101"), 7.5f);
         bangDiem.add(kq6);
 
-        KetQuaHocTap kq7 = new KetQuaHocTap(dsmh.getMonHocById("IE103"), 8.6f);
-        bangDiem.add(kq7);
+//        KetQuaHocTap kq7 = new KetQuaHocTap(dsmh.getMonHocById("IE103"), 8.6f);
+//        bangDiem.add(kq7);
 
         KetQuaHocTap kq8 = new KetQuaHocTap(dsmh.getMonHocById("IE105"), 9.1f);
         bangDiem.add(kq8);
@@ -136,6 +136,25 @@ public class SinhVienController {
         KetQuaHocTap kq30 = new KetQuaHocTap(dsmh.getMonHocById("ENG03"), -1f);
         bangDiem.add(kq30);
 
+        KetQuaHocTap kq31 = new KetQuaHocTap(dsmh.getMonHocById("IE201"), 8f);
+        bangDiem.add(kq31);
+
+        KetQuaHocTap kq32 = new KetQuaHocTap(dsmh.getMonHocById("IE212"), 9f);
+        bangDiem.add(kq32);
+
+        KetQuaHocTap kq33 = new KetQuaHocTap(dsmh.getMonHocById("CE212"), 8.2f);
+        bangDiem.add(kq33);
+
+        KetQuaHocTap kq34 = new KetQuaHocTap(dsmh.getMonHocById("CS314"), 8.2f);
+        bangDiem.add(kq34);
+
+        KetQuaHocTap kq35 = new KetQuaHocTap(dsmh.getMonHocById("CS316"), 6.4f);
+        bangDiem.add(kq35);
+
+        KetQuaHocTap kq36 = new KetQuaHocTap(dsmh.getMonHocById("DS317"), 6.4f);
+        bangDiem.add(kq36);
+
+
         // điểm rèn luyện
         int diemRenLuyen = 100;
 
@@ -149,9 +168,24 @@ public class SinhVienController {
     }
 
     public void xetTotNghiep() {
-        DieuKienDaiCuong dk = new DieuKienDaiCuong(this.dsmh);
+//        DieuKienDaiCuong dk = new DieuKienDaiCuong(this.dsmh);
+//        System.out.println(dk.xetDieuKien(this.sinhVien));
+//        System.out.println(dk.getLog());
+
+//        DieuKienCSNN dk = new DieuKienCSNN(this.dsmh);
+//        System.out.println(dk.xetDieuKien(this.sinhVien));
+//        System.out.println(dk.getLog());
+
+//        DieuKienCSN dk = new DieuKienCSN(this.dsmh);
+//        System.out.println(dk.xetDieuKien(this.sinhVien));
+//        System.out.println(dk.getLog());
+
+        DieuKienCN dk = new DieuKienCN(this.dsmh);
         System.out.println(dk.xetDieuKien(this.sinhVien));
         System.out.println(dk.getLog());
+
+
+
     }
 
 }

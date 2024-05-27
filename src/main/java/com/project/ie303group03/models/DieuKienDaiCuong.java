@@ -12,8 +12,7 @@ public class DieuKienDaiCuong extends DieuKienTotNghiep {
 
     public boolean xetDieuKien(SinhVien sv) {
        String log = "";
-       ArrayList<KetQuaHocTap> kqht = sv.getBangDiem();
-
+//       ArrayList<KetQuaHocTap> kqht = sv.getBangDiem();
         for(MonHoc mh : dsMonHocDC) {
             if(mh.getMaMH().equals("ME001"))
                 continue;
