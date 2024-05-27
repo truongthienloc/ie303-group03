@@ -10,6 +10,5 @@ public class MainTest {
        controller.initData();
 //       controller.print();
         controller.xetTotNghiep();
-
     }
 }

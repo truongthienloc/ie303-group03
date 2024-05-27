@@ -2,7 +2,6 @@ package com.project.ie303group03.controllers;
 
 import com.project.ie303group03.models.*;
 
-import java.net.ServerSocket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -29,7 +28,8 @@ public class SinhVienController {
 
         // khởi tạo danh sách điều kiện
         DieuKienTongTinChi dk1 = new DieuKienTongTinChi();
-        DieuKienAnhVan dk2 = new DieuKienAnhVan();
+        DieuKienDaiCuong dk2 = new DieuKienDaiCuong(this.dsmh);
+        DieuKienAnhVan dk3 = new DieuKienAnhVan();
 
         dsDieuKienTotNghiep.add(dk1);
         dsDieuKienTotNghiep.add(dk2);

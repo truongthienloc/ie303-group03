@@ -46,6 +46,16 @@ public class SinhVien {
         return null;
     }
 
+    public ArrayList<KetQuaHocTap> getKetQuaHocTapByLoai(String loaiMH) {
+        ArrayList<KetQuaHocTap> results = new ArrayList<>();
+        for(KetQuaHocTap kq : this.bangDiem) {
+            if(kq.getMonHoc().getLoaiMH().equals(loaiMH))
+                results.add(kq);
+        }
+
+        return results;
+    }
+
     public float tinhDiemTrungBinh() {
         float tongDiem = 0;
         int tongSoTinChi = 0;
