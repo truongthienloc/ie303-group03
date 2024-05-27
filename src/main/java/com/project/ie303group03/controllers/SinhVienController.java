@@ -28,9 +28,6 @@ public class SinhVienController {
     }
 
     public void initData() {
-        // tao ds mon hoc
-
-
         // tạo thông tin cá nhân
         String maSV = "21520984";
         String hoTen = "Tran Dinh Khanh";

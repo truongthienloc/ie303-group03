@@ -10,7 +10,7 @@ public class DieuKienTongTinChi extends DieuKienTotNghiep {
     public boolean xetDieuKien(SinhVien sv) {
         int sum = 0;
         for(KetQuaHocTap kq : sv.getBangDiem()) {
-            if(kq.getDiemTongKet() > 5 || kq.getDiemTongKet() == -1)
+            if(kq.getDiemTongKet() > 5f || kq.getDiemTongKet() == -1f)
                 sum += kq.getMonHoc().getSoTinChi();
         }
 
