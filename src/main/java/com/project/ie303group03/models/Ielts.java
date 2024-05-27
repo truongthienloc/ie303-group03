@@ -6,6 +6,7 @@ public class Ielts extends ChungChiNgoaiNgu{
     private float diem;
     private int soNamHetHan;
     static public final float DIEM_TOT_NGHIEP = 4.5f;
+//    static public final String MA = "";
 
     public Ielts(String maChungChi, int namCap, float diem, int soNamHetHan) {
         super(maChungChi, namCap);
@@ -15,6 +16,11 @@ public class Ielts extends ChungChiNgoaiNgu{
 
     public float getDiem() {
         return this.diem;
+    }
+
+    @Override
+    public Object getKetQua() {
+        return this.getDiem();
     }
 
     public int getSoNamHetHan() {

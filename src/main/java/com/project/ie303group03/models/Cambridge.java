@@ -14,6 +14,11 @@ public class Cambridge extends ChungChiNgoaiNgu{
     }
 
     @Override
+    public Object getKetQua() {
+        return this.getXepLoai();
+    }
+
+    @Override
     public int getSoNamHetHan() {
         return 0;
     }

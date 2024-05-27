@@ -14,10 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -51,6 +50,12 @@ public class MainController implements Initializable {
     private TextField tfMSSV;
     @FXML
     private TextField tfHoTen;
+    @FXML
+    private TableView<ChungChiDataModel> tableChungChi;
+    @FXML
+    private TableColumn<ChungChiDataModel, String> colMaChungChi;
+    @FXML
+    private  TableColumn<ChungChiDataModel, Object> colKetQua;
 
     private SinhVienController sinhVienController = null;
 
@@ -64,6 +69,12 @@ public class MainController implements Initializable {
         colMaMonHoc.setStyle("-fx-alignment: CENTER;");
         colSoTinChi.setStyle("-fx-alignment: CENTER;");
         colDiem.setStyle("-fx-alignment: CENTER;");
+
+        colMaChungChi.setCellValueFactory(new PropertyValueFactory<ChungChiDataModel, String>("maChungChi"));
+        colKetQua.setCellValueFactory(new PropertyValueFactory<ChungChiDataModel, Object>("ketQua"));
+
+        colMaChungChi.setStyle("-fx-alignment: CENTER;");
+        colKetQua.setStyle("-fx-alignment: CENTER;");
     }
 
     public void setSinhVienController(SinhVienController sinhVienController) {
@@ -72,6 +83,7 @@ public class MainController implements Initializable {
 
     private void renderTableMonHoc() {
         ArrayList<KetQuaHocTap> kqhts = this.sinhVienController.getSinhVien().getBangDiem();
+        ArrayList<ChungChiNgoaiNgu> ccnns = this.sinhVienController.getSinhVien().getDsChungChiNgoaiNgu();
 
         ObservableList<KQHTDataModel> sinhVienList = FXCollections.observableArrayList();
         for (KetQuaHocTap kqht : kqhts) {
@@ -79,6 +91,13 @@ public class MainController implements Initializable {
         }
 
         tableMonHoc.setItems(sinhVienList);
+
+        ObservableList<ChungChiDataModel> chungChiList = FXCollections.observableArrayList();
+        for (ChungChiNgoaiNgu ccnn : ccnns) {
+            chungChiList.add(ChungChiDataModel.fromChungChiNgoaiNgu(ccnn));
+        }
+
+        tableChungChi.setItems(chungChiList);
 
         SinhVien sinhVien = this.sinhVienController.getSinhVien();
         tfMSSV.setText(sinhVien.getMaSV());
@@ -106,7 +125,7 @@ public class MainController implements Initializable {
             Workbook wb = WorkbookFactory.create(fis);
             Sheet sheetThongTin = wb.getSheetAt(0);
             Sheet sheetBangDiem = wb.getSheetAt(1);
-//        Sheet sheetChungChi = wb.getSheetAt(2);
+            Sheet sheetChungChi = wb.getSheetAt(2);
 
             String mssv = sheetThongTin.getRow(0).getCell(0).getStringCellValue();
             String hoTen = sheetThongTin.getRow(1).getCell(0).getStringCellValue();
@@ -114,7 +133,10 @@ public class MainController implements Initializable {
 
 
             DanhSachMonHoc dsmh = new DanhSachMonHoc();
+            ChungChiNgoaiNguFactory ccnnFactory = new ChungChiNgoaiNguFactory();
             ArrayList<KetQuaHocTap> kqhts = new ArrayList<>();
+            ArrayList<ChungChiNgoaiNgu> ccnns = new ArrayList<>();
+
 
             int startRow = sheetBangDiem.getFirstRowNum();
             int endRow = sheetBangDiem.getLastRowNum();
@@ -131,7 +153,35 @@ public class MainController implements Initializable {
                 kqhts.add(kqht);
             }
 
-            SinhVien sinhVien = new SinhVien(mssv, hoTen, new ArrayList<>(), kqhts, diemRenLuyen);
+            startRow = sheetChungChi.getFirstRowNum();
+            endRow = sheetChungChi.getLastRowNum();
+            for (int i = startRow; i <= endRow; i++) {
+                Row curRow = sheetChungChi.getRow(i);
+                String maChungChi = curRow.getCell(0).getStringCellValue();
+                int namCap = (int) curRow.getCell(1).getNumericCellValue();
+
+                CellType cellType = curRow.getCell(2).getCellType();
+                Object ketQua = null;
+                if (cellType.equals(CellType.STRING)) {
+                    ketQua = curRow.getCell(2).getStringCellValue();
+                }
+                else {
+                    ketQua = (float) curRow.getCell(2).getNumericCellValue();
+                }
+
+                Cell cellNamHetHan = curRow.getCell(3);
+                int soNamHetHan = 0;
+                if (cellNamHetHan != null) {
+                    soNamHetHan = (int) cellNamHetHan.getNumericCellValue();
+                }
+
+                ChungChiNgoaiNgu ccnn = ccnnFactory.createChungChiNgoaiNgu(maChungChi, namCap, ketQua, soNamHetHan);
+                if (ccnn != null) {
+                    ccnns.add(ccnn);
+                }
+            }
+
+            SinhVien sinhVien = new SinhVien(mssv, hoTen, ccnns, kqhts, diemRenLuyen);
             this.sinhVienController.setSinhVien(sinhVien);
             this.renderTableMonHoc();
         } catch (Exception exception) {

@@ -16,6 +16,11 @@ public class VNU_EPT extends ChungChiNgoaiNgu{
         return this.diem;
     }
 
+    @Override
+    public Object getKetQua() {
+        return this.getDiem();
+    }
+
     public int getSoNamHetHan() {
         return this.soNamHetHan;
     }

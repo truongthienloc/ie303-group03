@@ -46,4 +46,12 @@ public class DanhSachMonHoc {
         }
         return results;
     }
+    public ArrayList<MonHoc> getMonHocByKhoa (String makhoa) {
+        ArrayList<MonHoc> results = new ArrayList<>();
+        for (MonHoc mh : this.dsMonHoc) {
+            if (mh.getKhoa().getMaKhoa().equals(makhoa))
+                results.add(mh);
+        }
+        return results;
+    }
 }
