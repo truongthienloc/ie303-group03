@@ -46,4 +46,21 @@ public class SinhVien {
         return null;
     }
 
+    public float tinhDiemTrungBinh() {
+        float tongDiem = 0;
+        int tongSoTinChi = 0;
+
+        for(KetQuaHocTap kq : this.bangDiem) {
+            // trường hợp được miễn môn học
+            if(kq.getDiemTongKet() == -1) {
+                continue;
+            }
+
+            tongDiem = tongDiem + kq.getDiemTongKet()*kq.getMonHoc().getSoTinChi();
+            tongSoTinChi += kq.getMonHoc().getSoTinChi();
+        }
+
+        return (float)tongDiem/tongSoTinChi;
+    }
+
 }
