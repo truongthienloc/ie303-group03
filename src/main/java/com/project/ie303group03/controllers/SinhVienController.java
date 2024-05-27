@@ -2,6 +2,7 @@ package com.project.ie303group03.controllers;
 
 import com.project.ie303group03.models.*;
 
+import java.net.ServerSocket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,6 +11,14 @@ public class SinhVienController {
     private String[] logs;
     private ArrayList<DieuKienTotNghiep> dsDieuKienTotNghiep = new ArrayList<>();
     private DanhSachMonHoc dsmh = null;
+
+    public void setSinhVien(SinhVien sinhVien) {
+        this.sinhVien = sinhVien;
+    }
+
+    public SinhVien getSinhVien() {
+        return sinhVien;
+    }
 
     public SinhVienController() {
         try {
