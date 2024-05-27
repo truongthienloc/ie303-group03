@@ -19,6 +19,10 @@ public class SinhVienController {
         return sinhVien;
     }
 
+    public ArrayList<String> getLogs() {
+        return logs;
+    }
+
     public SinhVienController() {
         try {
             dsmh = new DanhSachMonHoc();

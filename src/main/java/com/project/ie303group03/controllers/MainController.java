@@ -79,6 +79,14 @@ public class MainController implements Initializable {
 
     public void setSinhVienController(SinhVienController sinhVienController) {
         this.sinhVienController = sinhVienController;
+        this.onReady();
+    }
+
+    private void onReady() {
+        if (this.sinhVienController.getSinhVien() != null) {
+            this.renderTableMonHoc();
+        }
+
     }
 
     private void renderTableMonHoc() {
