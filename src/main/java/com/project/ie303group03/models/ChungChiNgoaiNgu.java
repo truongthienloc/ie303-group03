@@ -13,7 +13,15 @@ public abstract class ChungChiNgoaiNgu {
         return this.namCap;
     }
 
+    public String getMaChungChi() {
+        return maChungChi;
+    }
+
     public abstract int getSoNamHetHan();
+
+    public Object getKetQua() {
+        return "Unknown";
+    }
 
     public abstract MaXetChungChi xetChungChi();
 }
