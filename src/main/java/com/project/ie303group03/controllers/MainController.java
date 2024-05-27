@@ -43,7 +43,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<KQHTDataModel, Integer> colSoTinChi;
     @FXML
-    private TableColumn<KQHTDataModel, Float> colDiem;
+    private TableColumn<KQHTDataModel, String> colDiem;
     @FXML
     private TextField tfDiemRenLuyen;
     @FXML
@@ -64,7 +64,7 @@ public class MainController implements Initializable {
         colMaMonHoc.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, String>("maMonHoc"));
         colTenMonHoc.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, String>("tenMonHoc"));
         colSoTinChi.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, Integer>("soTinChi"));
-        colDiem.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, Float>("diem"));
+        colDiem.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, String>("diem"));
 
         colMaMonHoc.setStyle("-fx-alignment: CENTER;");
         colSoTinChi.setStyle("-fx-alignment: CENTER;");

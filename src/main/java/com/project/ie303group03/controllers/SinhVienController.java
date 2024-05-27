@@ -2,13 +2,12 @@ package com.project.ie303group03.controllers;
 
 import com.project.ie303group03.models.*;
 
-import java.net.ServerSocket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SinhVienController {
     private SinhVien sinhVien;
-    private String[] logs;
+    private ArrayList<String> logs = new ArrayList<>();
     private ArrayList<DieuKienTotNghiep> dsDieuKienTotNghiep = new ArrayList<>();
     private DanhSachMonHoc dsmh = null;
 
@@ -29,11 +28,25 @@ public class SinhVienController {
 
         // khởi tạo danh sách điều kiện
         DieuKienTongTinChi dk1 = new DieuKienTongTinChi();
-        DieuKienAnhVan dk2 = new DieuKienAnhVan();
+        DieuKienDaiCuong dk2 = new DieuKienDaiCuong(this.dsmh);
+        DieuKienCSNN dk3 = new DieuKienCSNN(this.dsmh);
+        DieuKienCSN dk4 = new DieuKienCSN(this.dsmh);
+        DieuKienCN dk5 = new DieuKienCN(this.dsmh);
+        DieuKienMonHocKhac dk6 = new DieuKienMonHocKhac();
+        DieuKienKhoaLuan dk7 = new DieuKienKhoaLuan();
+        DieuKienAnhVan dk8 = new DieuKienAnhVan();
+        DieuKienDiemRenLuyen dk9 = new DieuKienDiemRenLuyen();
+
 
         dsDieuKienTotNghiep.add(dk1);
         dsDieuKienTotNghiep.add(dk2);
-        // khởi tạo
+        dsDieuKienTotNghiep.add(dk3);
+        dsDieuKienTotNghiep.add(dk4);
+        dsDieuKienTotNghiep.add(dk5);
+        dsDieuKienTotNghiep.add(dk6);
+        dsDieuKienTotNghiep.add(dk7);
+        dsDieuKienTotNghiep.add(dk8);
+        dsDieuKienTotNghiep.add(dk9);
     }
 
     public void initData() {
@@ -42,11 +55,9 @@ public class SinhVienController {
         String hoTen = "Tran Dinh Khanh";
 
         // Khởi tạo chứng chỉ ngoại ngữ
-        ToeicLR toeicLR = new ToeicLR("toeicLR", 2024 ,600, 2);
-        ToeicSW toiecSW = new ToeicSW("toiecSW", 2024, 200, 2);
+        ToeicLR toeicLR = new ToeicLR("toeicLR", 2024 ,800, 2);
 
         ArrayList<ChungChiNgoaiNgu> dsChungChiNgoaiNgu = new ArrayList<ChungChiNgoaiNgu>();
-        dsChungChiNgoaiNgu.add(toiecSW);
         dsChungChiNgoaiNgu.add(toeicLR);
 
         // tạo môn học
@@ -70,8 +81,8 @@ public class SinhVienController {
         KetQuaHocTap kq6 = new KetQuaHocTap(dsmh.getMonHocById("IE101"), 7.5f);
         bangDiem.add(kq6);
 
-//        KetQuaHocTap kq7 = new KetQuaHocTap(dsmh.getMonHocById("IE103"), 8.6f);
-//        bangDiem.add(kq7);
+        KetQuaHocTap kq7 = new KetQuaHocTap(dsmh.getMonHocById("IE103"), 8.6f);
+        bangDiem.add(kq7);
 
         KetQuaHocTap kq8 = new KetQuaHocTap(dsmh.getMonHocById("IE105"), 9.1f);
         bangDiem.add(kq8);
@@ -142,23 +153,23 @@ public class SinhVienController {
         KetQuaHocTap kq30 = new KetQuaHocTap(dsmh.getMonHocById("ENG03"), -1f);
         bangDiem.add(kq30);
 
-        KetQuaHocTap kq31 = new KetQuaHocTap(dsmh.getMonHocById("IE201"), 8f);
-        bangDiem.add(kq31);
-
-        KetQuaHocTap kq32 = new KetQuaHocTap(dsmh.getMonHocById("IE212"), 9f);
-        bangDiem.add(kq32);
-
-        KetQuaHocTap kq33 = new KetQuaHocTap(dsmh.getMonHocById("CE212"), 8.2f);
-        bangDiem.add(kq33);
-
-        KetQuaHocTap kq34 = new KetQuaHocTap(dsmh.getMonHocById("CS314"), 8.2f);
-        bangDiem.add(kq34);
-
-        KetQuaHocTap kq35 = new KetQuaHocTap(dsmh.getMonHocById("CS316"), 6.4f);
-        bangDiem.add(kq35);
-
-        KetQuaHocTap kq36 = new KetQuaHocTap(dsmh.getMonHocById("DS317"), 6.4f);
-        bangDiem.add(kq36);
+//        KetQuaHocTap kq31 = new KetQuaHocTap(dsmh.getMonHocById("IE201"), 8f);
+//        bangDiem.add(kq31);
+//
+//        KetQuaHocTap kq32 = new KetQuaHocTap(dsmh.getMonHocById("IE212"), 9f);
+//        bangDiem.add(kq32);
+//
+//        KetQuaHocTap kq33 = new KetQuaHocTap(dsmh.getMonHocById("CE212"), 8.2f);
+//        bangDiem.add(kq33);
+//
+//        KetQuaHocTap kq34 = new KetQuaHocTap(dsmh.getMonHocById("CS314"), 8.2f);
+//        bangDiem.add(kq34);
+//
+//        KetQuaHocTap kq35 = new KetQuaHocTap(dsmh.getMonHocById("CS316"), 6.4f);
+//        bangDiem.add(kq35);
+//
+//        KetQuaHocTap kq36 = new KetQuaHocTap(dsmh.getMonHocById("DS317"), 6.4f);
+//        bangDiem.add(kq36);
 
 
         // điểm rèn luyện
@@ -174,24 +185,20 @@ public class SinhVienController {
     }
 
     public void xetTotNghiep() {
-//        DieuKienDaiCuong dk = new DieuKienDaiCuong(this.dsmh);
-//        System.out.println(dk.xetDieuKien(this.sinhVien));
-//        System.out.println(dk.getLog());
+        boolean isPass = true;
+        for(DieuKienTotNghiep dk : this.dsDieuKienTotNghiep) {
+            if(!dk.xetDieuKien(this.sinhVien))
+                isPass = false;
+            if(!dk.getLog().isEmpty())
+                logs.add(dk.getLog());
+        }
 
-//        DieuKienCSNN dk = new DieuKienCSNN(this.dsmh);
-//        System.out.println(dk.xetDieuKien(this.sinhVien));
-//        System.out.println(dk.getLog());
+        if(!isPass)
+            logs.add("\t==> Bạn không đủ điều kiện tốt nghiệp!");
+        else logs.add("\t==> Bạn đủ điều kiện tốt nghiệp!");
 
-//        DieuKienCSN dk = new DieuKienCSN(this.dsmh);
-//        System.out.println(dk.xetDieuKien(this.sinhVien));
-//        System.out.println(dk.getLog());
-
-        DieuKienCN dk = new DieuKienCN(this.dsmh);
-        System.out.println(dk.xetDieuKien(this.sinhVien));
-        System.out.println(dk.getLog());
-
-
-
+        for(String log : this.logs)
+            System.out.println(log + "\n");
     }
 
 }

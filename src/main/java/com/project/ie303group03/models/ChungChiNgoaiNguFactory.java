@@ -15,10 +15,10 @@ public class ChungChiNgoaiNguFactory {
                 case "toefl":
                     result = new Toefl(maChungChi.toUpperCase(), namCap, (int)(float)ketQua, soNamHetHan);
                     break;
-                case "toieclr":
+                case "toeiclr":
                     result = new ToeicLR(maChungChi.toUpperCase(), namCap, (int)(float)ketQua, soNamHetHan);
                     break;
-                case "toiecsw":
+                case "toeicsw":
                     result = new ToeicSW(maChungChi.toUpperCase(), namCap, (int)(float)ketQua, soNamHetHan);
                     break;
                 case "vnu_ept":
