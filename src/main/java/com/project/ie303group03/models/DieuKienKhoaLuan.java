@@ -9,7 +9,7 @@ public class DieuKienKhoaLuan extends DieuKienTotNghiep{
             "IE204", "IE213", "IE353", "IS334", "IE303", "IE307",
             "IS251", "IS352", "IS351", "IE205", "IE304", "IE305"};
 
-    public DieuKienKhoaLuan() throws SQLException {
+    public DieuKienKhoaLuan() {
         super();
     }
 
