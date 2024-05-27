@@ -127,7 +127,7 @@ public class MainController implements Initializable {
             return;
         }
 
-        // TODO: Handle add data and navigate to result
+        // TODO: Handle add data
         FileInputStream fis = new FileInputStream(file.getPath());
         try {
             Workbook wb = WorkbookFactory.create(fis);

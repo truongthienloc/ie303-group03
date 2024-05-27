@@ -157,25 +157,6 @@ public class SinhVienController {
         KetQuaHocTap kq30 = new KetQuaHocTap(dsmh.getMonHocById("ENG03"), -1f);
         bangDiem.add(kq30);
 
-//        KetQuaHocTap kq31 = new KetQuaHocTap(dsmh.getMonHocById("IE201"), 8f);
-//        bangDiem.add(kq31);
-//
-//        KetQuaHocTap kq32 = new KetQuaHocTap(dsmh.getMonHocById("IE212"), 9f);
-//        bangDiem.add(kq32);
-//
-//        KetQuaHocTap kq33 = new KetQuaHocTap(dsmh.getMonHocById("CE212"), 8.2f);
-//        bangDiem.add(kq33);
-//
-//        KetQuaHocTap kq34 = new KetQuaHocTap(dsmh.getMonHocById("CS314"), 8.2f);
-//        bangDiem.add(kq34);
-//
-//        KetQuaHocTap kq35 = new KetQuaHocTap(dsmh.getMonHocById("CS316"), 6.4f);
-//        bangDiem.add(kq35);
-//
-//        KetQuaHocTap kq36 = new KetQuaHocTap(dsmh.getMonHocById("DS317"), 6.4f);
-//        bangDiem.add(kq36);
-
-
         // điểm rèn luyện
         int diemRenLuyen = 100;
 
@@ -188,7 +169,7 @@ public class SinhVienController {
         }
     }
 
-    public void xetTotNghiep() {
+    public boolean xetTotNghiep() {
         boolean isPass = true;
         for(DieuKienTotNghiep dk : this.dsDieuKienTotNghiep) {
             if(!dk.xetDieuKien(this.sinhVien))
@@ -201,8 +182,11 @@ public class SinhVienController {
             logs.add("\t==> Bạn không đủ điều kiện tốt nghiệp!");
         else logs.add("\t==> Bạn đủ điều kiện tốt nghiệp!");
 
-        for(String log : this.logs)
-            System.out.println(log + "\n");
+        return isPass;
     }
 
+    public void luuKetQuaXetTotNghiep() throws SQLException {
+        SQLServer.getServerInstance().insert(this);
+        SQLServer.getServerInstance().closeConnection();
+    }
 }
