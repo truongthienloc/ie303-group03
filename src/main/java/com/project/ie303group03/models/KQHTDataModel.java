@@ -4,9 +4,9 @@ public class KQHTDataModel {
     public final String maMonHoc;
     public final String tenMonHoc;
     public final int soTinChi;
-    public final float diem;
+    public final String diem;
 
-    public KQHTDataModel(String maMonHoc, String tenMonHoc, int soTinChi, float diem) {
+    public KQHTDataModel(String maMonHoc, String tenMonHoc, int soTinChi, String diem) {
         this.maMonHoc = maMonHoc;
         this.tenMonHoc = tenMonHoc;
         this.soTinChi = soTinChi;
@@ -25,7 +25,7 @@ public class KQHTDataModel {
         return soTinChi;
     }
 
-    public float getDiem() {
+    public String getDiem() {
         return diem;
     }
 
@@ -34,6 +34,10 @@ public class KQHTDataModel {
         String tenMonHoc = kqht.getMonHoc().getTenMH();
         int soTinChi = kqht.getMonHoc().getSoTinChi();
         float diem = kqht.getDiemTongKet();
-        return new KQHTDataModel(maMonHoc, tenMonHoc, soTinChi, diem);
+        String strDiem = String.valueOf(diem);
+        if (diem < 0) {
+            strDiem = "Miễn";
+        }
+        return new KQHTDataModel(maMonHoc, tenMonHoc, soTinChi, strDiem);
     }
 }
