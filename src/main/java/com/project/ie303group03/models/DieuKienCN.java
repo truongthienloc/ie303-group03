@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class DieuKienCN extends DieuKienTotNghiep{
     private ArrayList<MonHoc> dsMonHocCN = null;
     static private final int TC_CN = 24;
+
     public DieuKienCN (DanhSachMonHoc dsmh) {
         super();
         this.dsMonHocCN = dsmh.getMonHocByType("CN");
@@ -38,9 +39,11 @@ public class DieuKienCN extends DieuKienTotNghiep{
         }
 
         if (totalOuter > 12) totalOuter = 12;
-        if (totalInner + totalOuter < 24  )
+        int sum = totalInner + totalOuter;
+
+        if (sum < 24)
         {
-            log += "\nBạn cần tích lũy tối thiểu 24 tín chỉ chuyên ngành \nBạn đã tích lũy được" + String.valueOf(totalOuter + totalInner) + " tín chỉ chuyên ngành.";
+            log += "\nBạn cần tích lũy tối thiểu 24 tín chỉ chuyên ngành \nBạn đã tích lũy được " + String.valueOf(sum) + " tín chỉ chuyên ngành.";
             log += "\nTrong đó có: \n+ " + String.valueOf(totalInner) + " tín chỉ trong các mục 1.3.3.1 & 1.3.3.2 & 1.3.3.3 & 1.3.3.3 trang student.";
             log += "\n+ " + String.valueOf(totalOuter) + " tín chỉ trong mục 1.3.3.5 trang student .";
             log += "\n *** Lưu ý: Số tín chỉ ở mục 1.3.3.5 chỉ được tích lũy tối thiểu 12 tín chỉ " +

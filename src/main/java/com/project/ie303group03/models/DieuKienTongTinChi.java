@@ -15,7 +15,7 @@ public class DieuKienTongTinChi extends DieuKienTotNghiep {
         }
 
         if(sum < SO_TIN_CHI_TOI_THIEU) {
-            setLog("Bạn chưa tích lũy đủ 125 tín chỉ");
+            setLog("Bạn chưa tích lũy đủ số tín chỉ (" + String.valueOf(sum) + "/125)");
             return false;
         }
 

@@ -39,13 +39,7 @@ public class DieuKienKhoaLuan extends DieuKienTotNghiep{
         else {
             KetQuaHocTap khoaLuan = sv.getKetQuaHocTapFromBangDiem("IE505");
             if(khoaLuan == null || khoaLuan.getDiemTongKet() < 5f) {
-                int tongTinChiChuyenDe = 0;
-                for(KetQuaHocTap kq : sv.getBangDiem()) {
-                    if(!Arrays.asList(this.dsMaMonChuyenNganhDeXuat).contains(kq.getMonHoc().getMaMH()))
-                        tongTinChiChuyenDe += kq.getMonHoc().getSoTinChi();
-                }
-
-                if(tongTinChiChuyenNganh - tongTinChiChuyenDe < 10) {
+                if(tongTinChiChuyenNganh - 26 < 10) {
                     log += "\nBạn cần làm KLTN(IE505) hoặc học 3 môn chuyên đề thay thế";
                 }
 

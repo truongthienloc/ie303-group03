@@ -25,7 +25,7 @@ public class DieuKienCSN extends DieuKienTotNghiep {
            }
        }
        if (total < TC_CSN){
-           log += "\nBạn đã tích lũy được " + total + "tín chỉ cơ sở ngành.\nBạn cần tích lũy tối thiểu 19 tín chỉ cơ sở ngành.\nSau đây là các môn bạn chưa học:";
+           log += "\nBạn đã tích lũy được " + total + " tín chỉ cơ sở ngành.\nBạn cần tích lũy tối thiểu 19 tín chỉ cơ sở ngành.\nSau đây là các môn bạn chưa học:";
            for (MonHoc notYet : notStudy) {
                log += "\n+ Môn " + notYet.getMaMH() + "\tSố TC: " + notYet.getSoTinChi();
            }
