@@ -1,7 +1,7 @@
 package com.project.ie303group03.models;
 
 abstract public class DieuKienTotNghiep {
-    private String log;
+    protected String log;
 
     public DieuKienTotNghiep() {
         this.log = "";

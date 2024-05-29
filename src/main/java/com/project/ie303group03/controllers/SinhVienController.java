@@ -41,7 +41,6 @@ public class SinhVienController {
         DieuKienAnhVan dk8 = new DieuKienAnhVan();
         DieuKienDiemRenLuyen dk9 = new DieuKienDiemRenLuyen();
 
-
         dsDieuKienTotNghiep.add(dk1);
         dsDieuKienTotNghiep.add(dk2);
         dsDieuKienTotNghiep.add(dk3);
@@ -171,11 +170,13 @@ public class SinhVienController {
 
     public boolean xetTotNghiep() {
         boolean isPass = true;
+        this.logs.clear();
         for(DieuKienTotNghiep dk : this.dsDieuKienTotNghiep) {
-            if(!dk.xetDieuKien(this.sinhVien))
+            if(!dk.xetDieuKien(this.sinhVien)) {
                 isPass = false;
-            if(!dk.getLog().isEmpty())
-                logs.add(dk.getLog());
+                if(!dk.getLog().isEmpty())
+                    logs.add(dk.getLog());
+            }
         }
 
         if(!isPass)
