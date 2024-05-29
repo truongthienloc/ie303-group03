@@ -1,12 +1,11 @@
 package com.project.ie303group03.models;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.CallableStatement;
+import java.sql.*;
+
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.project.ie303group03.configs.DatabaseConfig;
+import com.project.ie303group03.controllers.SinhVienController;
 
 // apply singleton pattern
 public class SQLServer {
@@ -71,5 +70,32 @@ public class SQLServer {
     public ResultSet select(String sql) throws SQLException {
         CallableStatement cstmt = con.prepareCall(sql);
         return cstmt.executeQuery();
+    }
+
+    public void insert(SinhVienController controller) throws SQLException {
+        String sql = "";
+        String ketQua = controller.xetTotNghiep() ? "Đạt" : "Không đạt";
+
+        CallableStatement cstmt = con.prepareCall("SELECT * FROM KETQUAXETTOTNGHIEP WHERE MASV=?");
+        cstmt.setNString(1, controller.getSinhVien().getMaSV());
+        ResultSet res = cstmt.executeQuery();
+
+        if (!res.next()) {
+            sql = "INSERT INTO KETQUAXETTOTNGHIEP(MASV, KETQUA, DEXUAT) VALUES (?, ?, ?)";
+        } else {
+            // Update if the record exists
+            sql = "UPDATE KETQUAXETTOTNGHIEP SET KETQUA=?, DEXUAT=? WHERE MASV=?";
+        }
+
+        PreparedStatement statement = con.prepareStatement(sql);
+        statement.setNString(1, controller.getSinhVien().getMaSV());
+        statement.setNString(2, ketQua);
+        statement.setNString(3, String.join("", controller.getLogs()));
+
+        if (res.next()) {
+            statement.setNString(4, controller.getSinhVien().getMaSV());
+        }
+
+        statement.executeUpdate();
     }
 }

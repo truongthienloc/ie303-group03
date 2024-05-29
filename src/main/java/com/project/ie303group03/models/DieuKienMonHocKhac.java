@@ -11,11 +11,11 @@ public class DieuKienMonHocKhac extends DieuKienTotNghiep{
        KetQuaHocTap kq2 = sv.getKetQuaHocTapFromBangDiem("ME001");
 
        if(kq1 == null || kq1.getDiemTongKet() < 5f) {
-           resultLog = "Bạn chưa có chứng chỉ GDQP. Mã môn PE012";
+           resultLog = "Bạn chưa có chứng chỉ GDTC. Mã môn PE012";
        }
 
        if(kq2 == null || kq2.getDiemTongKet() < 5f) {
-           resultLog += "\n" + "Bạn chưa có chứng chỉ GDTC. Mã môn ME001";
+           resultLog += "\n" + "Bạn chưa có chứng chỉ GDQP. Mã môn ME001";
        }
 
        if(resultLog.equals("")) {

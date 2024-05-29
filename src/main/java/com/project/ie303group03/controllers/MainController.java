@@ -43,7 +43,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<KQHTDataModel, Integer> colSoTinChi;
     @FXML
-    private TableColumn<KQHTDataModel, Float> colDiem;
+    private TableColumn<KQHTDataModel, String> colDiem;
     @FXML
     private TextField tfDiemRenLuyen;
     @FXML
@@ -64,7 +64,7 @@ public class MainController implements Initializable {
         colMaMonHoc.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, String>("maMonHoc"));
         colTenMonHoc.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, String>("tenMonHoc"));
         colSoTinChi.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, Integer>("soTinChi"));
-        colDiem.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, Float>("diem"));
+        colDiem.setCellValueFactory(new PropertyValueFactory<KQHTDataModel, String>("diem"));
 
         colMaMonHoc.setStyle("-fx-alignment: CENTER;");
         colSoTinChi.setStyle("-fx-alignment: CENTER;");
@@ -79,6 +79,14 @@ public class MainController implements Initializable {
 
     public void setSinhVienController(SinhVienController sinhVienController) {
         this.sinhVienController = sinhVienController;
+        this.onReady();
+    }
+
+    private void onReady() {
+        if (this.sinhVienController.getSinhVien() != null) {
+            this.renderTableMonHoc();
+        }
+
     }
 
     private void renderTableMonHoc() {
@@ -119,7 +127,7 @@ public class MainController implements Initializable {
             return;
         }
 
-        // TODO: Handle add data and navigate to result
+        // TODO: Handle add data
         FileInputStream fis = new FileInputStream(file.getPath());
         try {
             Workbook wb = WorkbookFactory.create(fis);
