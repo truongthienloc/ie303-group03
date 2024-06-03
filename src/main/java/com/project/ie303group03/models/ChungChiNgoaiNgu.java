@@ -1,8 +1,8 @@
 package com.project.ie303group03.models;
 
 public abstract class ChungChiNgoaiNgu {
-    String maChungChi;
-    int namCap;
+    protected String maChungChi;
+    protected int namCap;
 
     public ChungChiNgoaiNgu(String maChungChi, int namCap) {
         this.maChungChi = maChungChi;

@@ -41,7 +41,6 @@ public class SinhVienController {
         DieuKienAnhVan dk8 = new DieuKienAnhVan();
         DieuKienDiemRenLuyen dk9 = new DieuKienDiemRenLuyen();
 
-
         dsDieuKienTotNghiep.add(dk1);
         dsDieuKienTotNghiep.add(dk2);
         dsDieuKienTotNghiep.add(dk3);
