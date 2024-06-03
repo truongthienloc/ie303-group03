@@ -18,11 +18,11 @@ public class DieuKienMonHocKhac extends DieuKienTotNghiep{
            resultLog += "\n" + "Bạn chưa có chứng chỉ GDQP. Mã môn ME001";
        }
 
-       if(resultLog.equals("")) {
+       if(resultLog.isEmpty()) {
            return true;
        }
 
        setLog(resultLog);
-        return true;
+        return false;
     }
 }

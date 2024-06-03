@@ -49,14 +49,14 @@ public class DieuKienCN extends DieuKienTotNghiep{
             log += "\n *** Lưu ý: Số tín chỉ ở mục 1.3.3.5 chỉ được tích lũy tối thiểu 12 tín chỉ " +
                         "\n    Nếu bạn học nhiều hơn 12 tín chỉ thì vẫn chỉ được tính 12 tín chỉ tích lũy ***";
 
-            log += "\n ======== Các môn học còn lại trong ngành";
+            log += "\n\n ============= Các môn học còn lại trong ngành =============";
             for (MonHoc mh : notStudy)
             {
                 if ( Arrays.asList(dsCN).contains(mh.getMaMH()) )
                     log += "\n + " + mh.getMaMH() + "\t Số TC: " + mh.getSoTinChi();
             }
 
-            log += "\n ========= Các môn học trong khoa ";
+            log += "\n\n ============= Các môn học trong khoa =============";
             for (MonHoc mh : notStudy)
             {
                 if (mh.getKhoa().getMaKhoa().equals("KTTT"))
