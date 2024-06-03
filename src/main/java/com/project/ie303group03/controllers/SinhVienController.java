@@ -171,12 +171,16 @@ public class SinhVienController {
 
     public boolean xetTotNghiep() {
         boolean isPass = true;
+        this.logs.clear();
         for(DieuKienTotNghiep dk : this.dsDieuKienTotNghiep) {
-            if(!dk.xetDieuKien(this.sinhVien))
+            if(!dk.xetDieuKien(this.sinhVien)) {
                 isPass = false;
-            if(!dk.getLog().isEmpty())
-                logs.add(dk.getLog());
+                if(!dk.getLog().isEmpty())
+                    logs.add(dk.getLog());
+            }
         }
+
+        System.out.println(isPass);
 
         if(!isPass)
             logs.add("\t==> Bạn không đủ điều kiện tốt nghiệp!");
